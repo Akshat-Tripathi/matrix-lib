@@ -9,6 +9,7 @@ class ShapeError(Exception):
     pass
 class matrix:
     def __init__(self, array):
+        """Creates the matrix object from a 2d array"""
         self.matrix = array
         #Check if matrix is consistent
         if len(set(len(i) for i in array)) != 1:
@@ -18,6 +19,7 @@ class matrix:
         self.shape = [len(array), len(array[0])]
         
     def __add__(self, other):
+        """Adds the contents of one matrix to this one, or increments the value of every number in the matrix by the other"""
         if type(other) == matrix or type(other) == random_matrix:
             if other.shape == self.shape:
                 result = [[] for i in range(self.shape[0])]
@@ -36,6 +38,7 @@ class matrix:
             return matrix(result)
     
     def __sub__(self, other):
+        """Subtracts the contents of one matrix to this one, or decrements the value of every number in the matrix by the other"""
         if type(other) == matrix or type(other) == random_matrix:
             if other.shape == self.shape:
                 result = [[] for i in range(self.shape[0])]
@@ -53,6 +56,7 @@ class matrix:
             return matrix(result)
     
     def __mul__(self, other):
+        """Performs a Hadamard product, or multiplies the value of every number in the matrix by the other"""
         if type(other) == matrix or type(other) == random_matrix:
             if other.shape == self.shape:
                 result = [[] for i in range(self.shape[0])]
@@ -70,6 +74,7 @@ class matrix:
             return matrix(result)
     
     def __rmul__(self, other):
+        """Performs a Hadamard product, or multiplies the value of every number in the matrix by the other"""
         if type(other) == matrix or type(other) == random_matrix:
             if other.shape == self.shape:
                 result = [[] for i in range(self.shape[0])]
@@ -87,6 +92,7 @@ class matrix:
             return matrix(result)
     
     def __truediv__(self, other):
+        """Divides the contents of one matrix to this one, or divides the value of every number in the matrix by the other"""
         if type(other) == matrix or type(other) == random_matrix:
             if other.shape == self.shape:
                 result = [[] for i in range(self.shape[0])]
@@ -126,6 +132,7 @@ class matrix:
         return matrix(result)
     
     def dot_product(self, other):
+        """Performs a dot product operation to the matrix"""
         if self.shape[1] != other.shape[0]:
             raise ShapeError("The shapes of the matrices do not align")
         result = [[] for i in range(self.shape[0])]
@@ -141,5 +148,6 @@ class matrix:
 from random import random
 class random_matrix(matrix):
     def __init__(self, shape):
+        """Creates a matrix with random starting values"""
         self.matrix = [[random() for x in range(shape[1])] for y in range(shape[0])]
         self.shape = shape
