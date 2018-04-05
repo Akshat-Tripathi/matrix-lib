@@ -145,9 +145,15 @@ class matrix:
                 del su
         return matrix(result)
 
-from random import random
+from random import random, uniform
 class random_matrix(matrix):
     def __init__(self, shape):
         """Creates a matrix with random starting values"""
         self.matrix = [[random() for x in range(shape[1])] for y in range(shape[0])]
+        self.shape = shape
+        
+class seed_matrix(matrix):
+    def __init__(self, shape, n):
+        """Creates a matrix with values between +- n"""
+        self.matrix = [[uniform(-n, n) for x in range(shape[1])] for y in range(shape[0])]
         self.shape = shape
